@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="user" class="com.kevin.spring.Iocdemo.entity.User" />
+
+    <bean id="userDAO" class="com.kevin.spring.Iocdemo.dao.UserDAOImpl" />
+
+    <bean id="userService" class="com.kevin.spring.Iocdemo.service.UserServiceImpl">
+        <property name="userDAO" bean="userDAO" />
+    </bean>
+</beans>
