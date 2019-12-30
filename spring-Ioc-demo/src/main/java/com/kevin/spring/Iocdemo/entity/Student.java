@@ -2,10 +2,10 @@ package com.kevin.spring.Iocdemo.entity;
 
 /**
  * @Author kevin
- * @Description 实体对象
- * @Date Created on 2019/12/27 14:12
+ * @Description
+ * @Date Created on 2019/12/27 15:55
  */
-public class User {
+public class Student {
 
     private String userName;
     private String password;
@@ -28,9 +28,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Student{" +
                 "userName=" + userName +
                 ", password=" + password +
                 '}';
     }
+
 }

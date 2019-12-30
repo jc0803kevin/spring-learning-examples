@@ -4,7 +4,7 @@ import com.kevin.spring.Iocdemo.entity.User;
 
 /**
  * @Author kevin
- * @Description
+ * @Description 持久层实现类
  * @Date Created on 2019/12/27 14:14
  */
 public class UserDAOImpl implements UserDAO {

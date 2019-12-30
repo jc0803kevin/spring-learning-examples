@@ -1,4 +1,4 @@
-package com.kevin.spring.Iocdemo;
+package com.kevin.spring.Iocdemo.spring;
 
 import org.jdom.Document;
 import org.jdom.Element;
@@ -54,8 +54,7 @@ public class ClassPathXmlApplicationContext  implements BeanFactory{
     {
         SAXBuilder sb = new SAXBuilder();
 
-
-         File file = new File("D://workspace//test//spring-learning-examples//spring-Ioc-demo//target//classes//beans.xml");
+         File file = new File("D://workspace//test//spring-learning-examples//spring-Ioc-demo//com/kevin/spring/Iocdemo/beans.xml");
         // 构造文档对象
         //Document doc = sb.build(ClassPathXmlApplicationContext.class.getClassLoader().getResourceAsStream("beans.xml"));
         Document doc = sb.build(new ByteArrayInputStream(getTemplateContent().getBytes()));

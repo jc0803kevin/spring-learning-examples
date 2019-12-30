@@ -1,4 +1,4 @@
-package com.kevin.spring.Iocdemo;
+package com.kevin.spring.Iocdemo.spring;
 
 /**
  * @Author kevin
