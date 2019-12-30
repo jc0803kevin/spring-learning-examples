@@ -12,6 +12,9 @@ public class StudentServiceImpl {
 
     private StudentDAO studentDAO;
 
+
+    //必须显示定义无参构造方法
+    public StudentServiceImpl(){}
     /**
      * @Author kevin
      * @Description 通过构造方法的形式注入

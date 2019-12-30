@@ -11,10 +11,10 @@
     </bean>
 
     <!-- 通过构造方法的形式注入 -->
-    <bean id = "student" class="com.kevin.spring.Iocdemo.entity.Student"></bean>
-    <bean id ="studentDAO" class="com.kevin.spring.Iocdemo.dao.StudentDAOImpl"></bean>
+    <bean id = "student" class="com.kevin.spring.Iocdemo.entity.Student" />
+    <bean id ="studentDAO" class="com.kevin.spring.Iocdemo.dao.StudentDAOImpl" />
     <bean id = "studentService" class="com.kevin.spring.Iocdemo.service.StudentServiceImpl">
-        <constructor-arg name="studentDAO" ref="studentDAO"></constructor-arg>
+        <constructor-arg name="studentDAO" ref="studentDAO" />
     </bean>
 
 </beans>

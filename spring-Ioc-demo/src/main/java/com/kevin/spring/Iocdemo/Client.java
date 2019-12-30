@@ -23,7 +23,7 @@ public class Client {
         try {
             BeanFactory beanFactory = new ClassPathXmlApplicationContext();
 
-            UserServiceImpl userService =  (UserServiceImpl)beanFactory.getBean("userService");
+            /*UserServiceImpl userService =  (UserServiceImpl)beanFactory.getBean("userService");
             User user =  (User)beanFactory.getBean("user");
             user.setUserName("kevin");
             user.setPassword("hhhhhhh");
@@ -35,17 +35,18 @@ public class Client {
 
             UserServiceImpl userService2 =  (UserServiceImpl)beanFactory.getBean("userService");
 
-            System.err.println(userService2.toString());
+            System.err.println(userService2.toString());*/
 
             /***********************************************************************************/
 
-            StudentServiceImpl studentServiceService =  (StudentServiceImpl)beanFactory.getBean("studentService");
+            StudentServiceImpl studentService =  (StudentServiceImpl)beanFactory.getBean("studentService");
             Student student =  (Student)beanFactory.getBean("student");
             student.setUserName("张三");
             student.setPassword("123456");
 
+            studentService.addStudent(student);
 
-
+            studentService.delStudent(student);
         } catch (Exception e) {
             e.printStackTrace();
         }
