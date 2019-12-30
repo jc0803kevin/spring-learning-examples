@@ -65,8 +65,7 @@ public class ClassPathXmlApplicationContext  implements BeanFactory{
         List list = root.getChildren();
 
         // 遍历beans
-        for (int i = 0; i < list.size(); i++)
-        {
+        for (int i = 0; i < list.size(); i++) {
             Element elements = (Element) list.get(i);
             String beanid = elements.getAttributeValue("id");// 取bean id子元素
             String clzss = elements.getAttributeValue("class"); // 取bean class子元素
@@ -118,12 +117,19 @@ public class ClassPathXmlApplicationContext  implements BeanFactory{
                 for (int y = 0; y < constructorArgs.size(); y++) {
                     Element propertyElement = constructorArgs.get(y);
                     String name = propertyElement.getAttributeValue("name");
-                    String ref = propertyElement.getAttributeValue("ref");
-                    //System.out.println("name---->"+name + "  ref---->"+ref);
-                    //System.out.println("beans ---->"+ beans);
 
                     //1,组装构造方法的参数值
-                    paramValues[y] = beans.get(ref);
+                    String ref = propertyElement.getAttributeValue("ref");
+                    String value = propertyElement.getAttributeValue("value");
+                    //System.out.println("name---->"+name + "  ref---->"+ref);
+                    if(null != ref){
+                        //引用类型
+                        paramValues[y] = beans.get(ref);
+                    }else {
+                        paramValues[y] = value;
+                    }
+
+                    //System.out.println("beans ---->"+ beans);
 
                 }
 

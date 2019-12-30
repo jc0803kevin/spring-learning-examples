@@ -15,6 +15,7 @@
     <bean id ="studentDAO" class="com.kevin.spring.Iocdemo.dao.StudentDAOImpl" />
     <bean id = "studentService" class="com.kevin.spring.Iocdemo.service.StudentServiceImpl">
         <constructor-arg name="studentDAO" ref="studentDAO" />
+        <constructor-arg name="serviceName" value="kevin" />
     </bean>
 
 </beans>

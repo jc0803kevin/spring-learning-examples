@@ -22,8 +22,9 @@ public class StudentServiceImpl {
      * @Date Created on 2019/12/27 16:07
      * @param  studentDAO
      */
-    public StudentServiceImpl(StudentDAO studentDAO){
+    public StudentServiceImpl(StudentDAO studentDAO, String serviceName){
         this.studentDAO = studentDAO;
+        this.serviceName = serviceName;
     }
 
     public void addStudent(Student student){
@@ -34,4 +35,11 @@ public class StudentServiceImpl {
         studentDAO.delete(student);
     }
 
+    @Override
+    public String toString() {
+        return "StudentServiceImpl{" +
+                "studentDAO =" + studentDAO +
+                ", serviceName=" + serviceName +
+                '}';
+    }
 }

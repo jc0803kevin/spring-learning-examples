@@ -20,25 +20,21 @@ public class Client {
 
     public static void main(String[] args) {
 
+        Client client = new Client();
+        //通过构造方法注入
+        client.injectionByConstructor();
+
+        //通过Getter/Setter方法注入
+        client.injectionByGetterAndSetter();
+
+
+    }
+
+    private void injectionByConstructor(){
         try {
+
+            /*******************************通过构造方法注入****************************************************/
             BeanFactory beanFactory = new ClassPathXmlApplicationContext();
-
-            /*UserServiceImpl userService =  (UserServiceImpl)beanFactory.getBean("userService");
-            User user =  (User)beanFactory.getBean("user");
-            user.setUserName("kevin");
-            user.setPassword("hhhhhhh");
-            userService.addUser(user);
-            userService.delUser(user);
-
-            System.err.println(userService.toString());
-            System.err.println();
-
-            UserServiceImpl userService2 =  (UserServiceImpl)beanFactory.getBean("userService");
-
-            System.err.println(userService2.toString());*/
-
-            /***********************************************************************************/
-
             StudentServiceImpl studentService =  (StudentServiceImpl)beanFactory.getBean("studentService");
             Student student =  (Student)beanFactory.getBean("student");
             student.setUserName("张三");
@@ -53,8 +49,43 @@ public class Client {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
+
+
+    private void injectionByGetterAndSetter() {
+        /*******************************通过Getter/Setter方法注入****************************************************/
+        BeanFactory beanFactory = null;
+        try {
+            beanFactory = new ClassPathXmlApplicationContext();
+        } catch (JDOMException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        UserServiceImpl userService =  (UserServiceImpl)beanFactory.getBean("userService");
+        User user =  (User)beanFactory.getBean("user");
+        user.setUserName("kevin");
+        user.setPassword("hhhhhhh");
+        userService.addUser(user);
+        userService.delUser(user);
+
+        System.err.println(userService.toString());
+        System.err.println();
+
+        UserServiceImpl userService2 =  (UserServiceImpl)beanFactory.getBean("userService");
+
+        System.err.println(userService2.toString());
+    }
+
 
 }
