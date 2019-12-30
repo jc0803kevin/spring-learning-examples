@@ -89,7 +89,7 @@ public class ClassPathXmlApplicationContext  implements BeanFactory{
                     //Object beanObj = this.getBean(name);
                     // 从beans.xml中根据id取到类的对象
                     Object beanObj = this.getBean(bean);
-                    //System.out.println(beanObj);//com.yyb.dao.impl.UserDAOImpl@a09ee92
+                    //System.out.println(beanObj);//com.kevin.spring.Iocdemo.impl.UserDAOImpl@a09ee92
                     // 形成setXXX方法名
                     String methodName = "set" + name.substring(0, 1).toUpperCase()
                             + name.substring(1);
@@ -101,8 +101,8 @@ public class ClassPathXmlApplicationContext  implements BeanFactory{
                     Method m = o.getClass().getMethod(methodName,
                             beanObj.getClass().getInterfaces()[0]);
                     //System.out.println(o.getClass());//class com.yyb.service.UserService
-                    //System.out.println(beanObj.getClass().getInterfaces()[0]);//interface com.yyb.dao.UserDAO
-                    //System.out.println(m);//public void com.yyb.service.UserService.setUserDAO(com.yyb.dao.UserDAO)
+                    //System.out.println(beanObj.getClass().getInterfaces()[0]);//interface com.kevin.spring.Iocdemo.UserDAO
+                    //System.out.println(m);//public void com.yyb.service.UserService.setUserDAO(com.kevin.spring.Iocdemo.UserDAO)
                     // 执行注入,相当于执行了一个setXXX(args..)的方法
                     m.invoke(o, beanObj);
                 }
