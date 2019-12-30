@@ -44,6 +44,9 @@ public class Client {
             student.setUserName("张三");
             student.setPassword("123456");
 
+            System.err.println(studentService.toString());
+            System.err.println(student.toString());
+
             studentService.addStudent(student);
 
             studentService.delStudent(student);

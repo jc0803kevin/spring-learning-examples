@@ -107,43 +107,49 @@ public class ClassPathXmlApplicationContext  implements BeanFactory{
                     // 执行注入,相当于执行了一个setXXX(args..)的方法
                     m.invoke(o, beanObj);
                 }
-            } else if(null != constructorArgs && constructorArgs.size() > 0){
-                System.err.println("--------------------------------constructorArgs---->" + constructorArgs.size());
+            } else if (null != constructorArgs && constructorArgs.size() > 0) {
+                //System.err.println("--------------------------------constructorArgs---->" + constructorArgs.size());
                 //通过通过构造器注入
 
 
                 //1,组装构造方法的参数值
-                Object [] paramValues = new Object[constructorArgs.size()];
+                Object[] paramValues = new Object[constructorArgs.size()];
                 //遍历 constructor-arg
-                for (int y=0 ; y< constructorArgs.size();y++) {
+                for (int y = 0; y < constructorArgs.size(); y++) {
                     Element propertyElement = constructorArgs.get(y);
                     String name = propertyElement.getAttributeValue("name");
                     String ref = propertyElement.getAttributeValue("ref");
-                    System.out.println("name---->"+name + "  ref---->"+ref);
+                    //System.out.println("name---->"+name + "  ref---->"+ref);
+                    //System.out.println("beans ---->"+ beans);
 
                     //1,组装构造方法的参数值
                     paramValues[y] = beans.get(ref);
 
-                    //2.调用构造方法实例化bean
-                    for(Constructor<?> constructor: o.getClass().getConstructors()) {
-                        try {
-                            o = constructor.newInstance(paramValues);
-                        } catch (InstantiationException e) {
-                            e.printStackTrace();
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        } catch (IllegalArgumentException e) {
-                            e.printStackTrace();
-                        } catch (InvocationTargetException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    //将实例化的bean放到beans里
-                    beans.put(beanid, o);
                 }
 
+                //2.调用构造方法实例化bean
+                for (Constructor<?> constructor : o.getClass().getConstructors()) {
+                    try {
+                        if (constructor.getParameterCount() > 0) {
+                            // new StudentServiceImpl(...)
+                            o = constructor.newInstance(paramValues);
+                        }
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                //将实例化的bean放到beans里
+                beans.put(beanid, o);
             }
+
 
         }
     }
