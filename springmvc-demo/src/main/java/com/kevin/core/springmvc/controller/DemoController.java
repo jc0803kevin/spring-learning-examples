@@ -28,7 +28,7 @@ public class DemoController {
 
         try {
             response.setContentType("text/html;charset=utf-8");
-            response.getWriter().write("Controller add " + name);
+            response.getWriter().write(request.getSession().getId() + "Controller add " + name);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,7 +41,7 @@ public class DemoController {
 
         try {
             response.setContentType("text/html;charset=utf-8");
-            response.getWriter().write("Controller del "+name);
+            response.getWriter().write(request.getSession().getId() + "Controller del "+name);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -199,6 +199,14 @@ public class KevinSpringDispatcherServlet extends HttpServlet {
         }
     }
 
+    /**
+     * @Author kevin
+     * @Description 根据浏览器传过来的请求，取得url并解析为相对路径，通过url在handlerMapping容器中找到对应的方法，通过反射调用该方法。
+     * @Date Created on 2019/12/31 11:13
+     * @param req
+     * @param resp
+     * @return
+     */
     private void doDispatch(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         String url = req.getRequestURI();
         String contextUrl = req.getContextPath();

@@ -6,11 +6,11 @@ import java.lang.annotation.*;
  * @Author kevin
  * @Description 自动注入注解
  * @Date Created on 2019/12/31 9:23
+ * @see org.springframework.beans.factory.annotation.Autowired
  */
 
-@Target(ElementType.FIELD)
+@Target({ElementType.CONSTRUCTOR, ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Inherited
 @Documented
 public @interface KevinAutowired {
 
