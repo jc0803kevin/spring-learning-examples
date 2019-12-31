@@ -20,6 +20,7 @@
 
     <modules>
         <module>spring-Ioc-demo</module>
+        <module>springmvc-demo</module>
     </modules>
 
     <dependencies>
