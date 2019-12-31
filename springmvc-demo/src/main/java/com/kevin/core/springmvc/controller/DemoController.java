@@ -17,6 +17,7 @@ import java.io.IOException;
  */
 
 @KevinController
+@KevinRequestMapping("/demo")
 public class DemoController {
 
     @KevinAutowired

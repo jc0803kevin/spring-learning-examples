@@ -67,6 +67,11 @@ public class KevinSpringDispatcherServlet extends HttpServlet {
         }
     }
 
+    /**
+     * @Author kevin
+     * @Description 加载扫描包下所有的类
+     * @Date Created on 2019/12/31 14:11
+     */
     private void doScanner(String scanPackage) {
         URL url = this.getClass().getClassLoader().getResource("/" + scanPackage.replaceAll("\\.", "/"));
         File classpath = new File(url.getFile());
@@ -84,6 +89,11 @@ public class KevinSpringDispatcherServlet extends HttpServlet {
 
     }
 
+    /**
+     * @Author kevin
+     * @Description 实例化扫描包下面的类（Controller Service ）
+     * @Date Created on 2019/12/31 14:11
+     */
     private void doInstance() {
         if (classNames.isEmpty()) {
             return;
@@ -92,11 +102,15 @@ public class KevinSpringDispatcherServlet extends HttpServlet {
             Class<?> clazz = null;
             try {
                 clazz = Class.forName(className);
+                //A.isAnnotationPresent(B.class)；意思就是：注释B是否在此A上。如果在则返回true；不在则返回false。
                 if (clazz.isAnnotationPresent(KevinController.class)) {
+                    //标记为Controller
                     String beanName = toLowerFirstCase(clazz.getSimpleName());
                     Object instance = clazz.newInstance();
                     ioc.put(beanName, instance);
                 } else if (clazz.isAnnotationPresent(KevinService.class)) {
+                    //标记为Service
+
                     //1.默认的类名为首字母小写
                     String beanName = toLowerFirstCase(clazz.getSimpleName());
                     //2.自定义的beanName
@@ -114,6 +128,7 @@ public class KevinSpringDispatcherServlet extends HttpServlet {
                         ioc.put(i.getSimpleName(), instance);
                     }
                 } else {
+                    //没有加上注解标记的类，不是一个Spring Bean
                     continue;
                 }
             } catch (Exception e) {
@@ -122,6 +137,11 @@ public class KevinSpringDispatcherServlet extends HttpServlet {
         }
     }
 
+    /**
+     * @Author kevin
+     * @Description 完成依赖注入，对扫描到的Bean 进行依赖的注入
+     * @Date Created on 2019/12/31 14:21
+     */
     private void doAutoWired() {
         if (ioc.isEmpty()) {
             return;
@@ -153,6 +173,11 @@ public class KevinSpringDispatcherServlet extends HttpServlet {
     }
 
 
+    /**
+     * @Author kevin
+     * @Description 初始化HandlerMapping映射
+     * @Date Created on 2019/12/31 14:23
+     */
     private void initHandlerMapping() {
         if (ioc.isEmpty()) {
             return;
@@ -171,6 +196,7 @@ public class KevinSpringDispatcherServlet extends HttpServlet {
 
             for (Method method : clazz.getMethods()) {
                 if (!method.isAnnotationPresent(KevinRequestMapping.class)) {
+                    //没有标记KevinRequestMapping 的方法全部过滤掉
                     continue;
                 }
                 KevinRequestMapping requestMapping = method.getAnnotation(KevinRequestMapping.class);
@@ -201,7 +227,11 @@ public class KevinSpringDispatcherServlet extends HttpServlet {
 
     /**
      * @Author kevin
-     * @Description 根据浏览器传过来的请求，取得url并解析为相对路径，通过url在handlerMapping容器中找到对应的方法，通过反射调用该方法。
+     * @Description
+     * <p>
+     *     根据浏览器传过来的请求，取得url并解析为相对路径，
+     *     通过url在handlerMapping容器中找到对应的方法，通过反射调用该方法。
+     * </p>
      * @Date Created on 2019/12/31 11:13
      * @param req
      * @param resp
