@@ -13,7 +13,16 @@
 
 
 
-
+##### SpringMVC 策略初始化
+- [initMultipartResolver(context);](https://blog.csdn.net/andy_zhang2007/article/details/87707854)
+- [initLocaleResolver(context);](https://blog.csdn.net/andy_zhang2007/article/details/87713496)
+- [initThemeResolver(context);](https://blog.csdn.net/andy_zhang2007/article/details/87716068)
+- [initHandlerMappings(context);](https://blog.csdn.net/andy_zhang2007/article/details/87694206)
+- [initHandlerAdapters(context);](https://blog.csdn.net/andy_zhang2007/article/details/87695727)
+- [initHandlerExceptionResolvers(context);](https://blog.csdn.net/andy_zhang2007/article/details/87704806)
+- [initRequestToViewNameTranslator(context);](https://blog.csdn.net/andy_zhang2007/article/details/87717844)
+- [initViewResolvers(context);](https://blog.csdn.net/andy_zhang2007/article/details/87703643)
+- [initFlashMapManager(context);](https://blog.csdn.net/andy_zhang2007/article/details/87718796)
 
 
 
