@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 模拟spring beans.xml文件 -->
 <beans>
 
     <!--  通过getter/setter 的方式注入  -->
